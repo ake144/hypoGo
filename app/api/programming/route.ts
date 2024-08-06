@@ -12,14 +12,14 @@ export async function POST(req: Request) {
   const { prompt } = await req.json();
 
   try {
-    const { text: summary } = await generateText({
+    const { text: explanation } = await generateText({
       model: groq('llama3-8b-8192'),
-      system: 'You are a summarizer. Summarize the given text concisely.',
+      system: 'You are a programming tutor. Explain the following code or concept in detail.',
       prompt,
     });
 
-    return NextResponse.json({ summary }, { status: 200 });
+    return NextResponse.json({ explanation }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ error: 'Error generating summary' }, { status: 500 });
+    return NextResponse.json({ error: 'Error generating explanation' }, { status: 500 });
   }
 }

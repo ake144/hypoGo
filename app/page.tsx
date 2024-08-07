@@ -1,63 +1,135 @@
 "use client";
 
 import Card from "@/components/card";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import { title } from "process";
 import { useEffect, useState } from "react";
 import React from 'react';
 
 export default function Home() {
   const tools = [
-    {
-      title: "Summarizer",
-      description: "Summarize text",
-      link: "/ai-tools/summarize",
-    },
-    {
-      title: "Essay",
-      description: "Generate an essay",
-      link: "/ai-tools/essay",
-    },
-    {
-      title: "Simple Explanation",
-      description: "Simplify complex topics",
-      link: "/ai-tools",
-    },
-    {
-      title: "Math Solver",
-      description: "Solve math problems",
-      link: "/ai-tools/math",
-    },
-    {
-      title: "Research Writer",
-      description: "Generate research papers",
-      link: "/ai-tools/research",
-    },
-    {
-      title: "Chat",
-      description: "Chat with an AI",
-      link: "/ai-tools/chat",
-    },
+{
+  title:'📝 summarizer',
+  description:'Summarize any text with a click of a button. Get the main points of any article or document in seconds.',
+},
+{
+title:' 🧒🏻 Explain Like I am 10',
+description:'make complex  topics simple. Explain any topic in simple terms. Great for students and teachers.',
+},
+{
+title:'✍🏻 Rewrite Content',
+description:'Rewrite any text with a click of a button. Get a fresh perspective on any topic.',
+},
+{
+  title:'📝 Ai Writer',
+  description:'Write any text with a click of a button. Get a fresh perspective on any topic.',
+},
+{
+  title:'👩‍💻 Learn Programming',
+  description:'Learn programming with real-time code examples. Get instant feedback on your code.',
+},
+{
+  title:'✍ Essay',
+  description:'Write an essay with a click of a button. Get a fresh perspective on any topic.',
+},
+{
+  title:'🔍 Research',
+  description:'Research any topic with a click of a button. Get a fresh perspective on any topic.',
+},
+{
+  title:'🗣 Interview Prep',
+  description:'Prepare for your next interview with real-time feedback. Get instant feedback on your answers.',
+},
+{
+  title:'📚 Cover Letter',
+  description:'Write a cover letter with a click of a button. Get a fresh perspective on any topic.',
+}
+
   ];
 
+const otherTools = [
+  {
+    title:'Forum',
+    description:'Join the community and get help from other'
+  },
+  {
+    title:'Blog',
+    description:'Read the latest articles and stay up to date with the latest trends'
+  },
+   
+  {
+    title:'Courses',
+    description:'Learn new skills and advance your career with our online courses'
+  },
+
+  {
+    title:'Webinars',
+    description:'Attend live webinars and learn from experts in the field'
+  },
+  {
+    title:'Podcast',
+    description:'Listen to our podcast and get inspired by the stories of successful people'
+  },
+  {
+    title:'Book Club',
+    description:'Join our book club and discuss the latest books with other members'
+  },
+
+  {
+    title:'Events',
+    description:'Attend our events and meet other members of the community'
+  },
+{
+    title:'Resources',
+    description:'Get access to resources that will help you learn and grow',
+  },
+
+]
+
+
   return (
-    <main className="flex min-h-screen flex-col  justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <div className="w-full ">
-          <h2 className="text-2xl justify-center items-center flex">AI-Tools for Student</h2>
-          <p className="text-md justify-center items-center flex text-gray-700 font-extralight">Have a nice study time</p>
-          <div className="mt-20 p-2">
-            <h3>Explore the AI tools</h3>
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-              {tools.map((tool, index) => (
-                <div key={index} className="rounded-lg border p-4 h-auto overflow-hidden border-b-indigo-950">
-                  <Card title={tool.title} description={tool.description} link={tool.link} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+   <div className="min-h-screen  flex justify-center items-center flex-col">
+      <div className="w-1/2 mt-20">
+         <h2 className="text-6xl  justify-center items-center font-bold font-serif ">Write, Research and Learn with HyperAi</h2>
+          <p className="text-xl font-semibold items-center justify-center mx-[90px] my-4  ">HyperAi delivers high-quality writing. Instantly tap into a wealth of knowledge with real-time search and citations. simplify complex topics write with the power of AI.</p>
+         <Link href='#tools'>
+            <Button  className="mx-[140px] my-5">
+                    Get Started for free
+            </Button>
+         </Link>
       </div>
-    </main>
+      <div className="mt-20">
+            <h3  className="mx-[100px] my-5 text-3xl  font-extrabold">Hundreds of powerful tools to transform your work</h3>
+
+            <div  className="grid lg:grid-cols-3 grid-cols-2 ">
+                {
+                  tools.map((tool, index)=>(
+                    <Link key={index} href='' className="bg-gray-400 hover:bg-gray-800 rounded-lg h-[130px]  my-3 mx-3 p-3 justify-center items-center">
+                        <p className="text-xl text-white items-center justify-center my-3"> {tool.title}</p>
+                        <p className="text-sm text-white items-center justify-center my-2 ">{tool.description}</p>
+                   </Link>
+
+                  ))
+                }
+         </div>
+      </div>
+
+      <div className="mt-20 ">
+            <h3 id='tools' className="mx-[100px] my-5 text-3xl  font-extrabold">other tools</h3>
+            <div  className="grid lg:grid-cols-3 grid-cols-2 ">
+              {otherTools.map((tool, index)=>(
+            <Link key={index} href='' className="bg-gray-400 hover:bg-gray-800 rounded-lg h-[130px]  my-3 mx-3 p-3 justify-center items-center">
+                        <p className="text-xl text-white items-center justify-center my-3"> {tool.title}</p>
+                        <p className="text-sm text-white items-center justify-center my-2 ">{tool.description}</p>
+                   </Link>
+              ))}
+              
+             </div>
+      </div>
+        
+   </div>
+     
   );
 }

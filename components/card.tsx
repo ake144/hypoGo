@@ -11,14 +11,14 @@ interface valuesType {
 
 const Card = ({title, description, link}:valuesType)=>{
     return(
-<a href={link} className="group relative block h-64 sm:h-50 lg:h-70 bg-[#b5afd1]">
+<Link href={link} className="group rounded-lg relative block h-20 lg:h-40 bg-[#b5afd1]">
   <span className="absolute inset-0 border-2 border-collapse border-black"></span>
 
   <div
-    className="relative flex h-full transform items-end border-2 border-black bg-[#19058f] transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2"
+    className="relative rounded-lg flex h-full transform items-end border-2 border-black bg-blue-500 transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2"
   >
     <div
-      className="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8"
+      className="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 text-white sm:p-6 lg:p-8"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -48,15 +48,12 @@ const Card = ({title, description, link}:valuesType)=>{
       </p>
 
       <p className="mt-8 text-white font-bold">
-        <Link href={link}>
            Explore
-        </Link>
-        
         
         </p>
     </div>
   </div>
-</a>
+</Link>
 )}
 
 

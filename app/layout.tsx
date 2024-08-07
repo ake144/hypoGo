@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/ui/headers";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,9 +21,15 @@ export default function RootLayout({
     <html lang="en">
      
       <body className={inter.className}>
+       <div className="z-10 fixed">
       <Navbar />
+      </div> 
         {children}
-        
+        <Link href="/ai-tools/chat">
+          <Button className="fixed bottom-0 bg-blue-400 w-[100px] font-semibold right-0  mb-9 mr-7 ">
+              Chat
+        </Button>
+        </Link>
         </body>
     </html>
   );

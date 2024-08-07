@@ -60,7 +60,7 @@ const ProgrammingPage: React.FC = () => {
 
       {error && <p className="mt-4 text-red-500">{error}</p>}
       {explanation && (
-        <div className="mt-4 p-4 bg-gray-100 border border-gray-300 rounded w-full max-w-md">
+        <div className="mt-4 p-4 mb-5 bg-gray-100 border border-gray-300 rounded w-full max-w-md">
           <h2 className="text-lg font-semibold">Explanation</h2>
           <p className="mt-2">{explanation}</p>
         </div>

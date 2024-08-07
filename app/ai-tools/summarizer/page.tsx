@@ -46,7 +46,7 @@ const SummarizerPage: React.FC = () => {
           value={prompt}
           placeholder="Type the text you want to summarize here"
           onChange={(e) => setPrompt(e.target.value)}
-          className='w-full p-2 mb-4 border border-gray-400 rounded'
+          className='w-full h-[180px] p-2 mb-4 border border-gray-400 rounded'
           rows={4}
         />
         <button

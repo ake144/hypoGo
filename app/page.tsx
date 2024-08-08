@@ -1,7 +1,11 @@
 "use client";
 
 import Card from "@/components/card";
+import { OrbitingCirclesDemo } from "@/components/cards";
+import { FrequentlyAsked } from "@/components/frequently";
+import { ScrollBasedVelocityDemo } from "@/components/testmonials";
 import { Button } from "@/components/ui/button";
+import {AcademicPage, JobsPage, WritingPage} from "@/components/tools";
 import Image from "next/image";
 import Link from "next/link";
 import { title } from "process";
@@ -92,8 +96,8 @@ const otherTools = [
   return (
    <div className="min-h-screen  flex justify-center items-center flex-col">
       <div className="w-1/2 mt-20">
-         <h2 className="text-6xl  justify-center items-center font-bold font-serif ">Write, Research and Learn with HyperAi</h2>
-          <p className="text-xl font-semibold items-center justify-center mx-[90px] my-4  ">HyperAi delivers high-quality writing. Instantly tap into a wealth of knowledge with real-time search and citations. simplify complex topics write with the power of AI.</p>
+         <h2 className="text-6xl  justify-center items-center font-bold font-serif ">Write, Research, Learn and Work with HypoGo</h2>
+          <p className="text-md font-semibold  items-center justify-center mx-[90px] my-4  ">HypoGo delivers high-quality writing. Instantly tap into a wealth of knowledge with real-time search and citations. simplify complex topics write with the power of AI.</p>
          <Link href='#tools'>
             <Button  className="mx-[140px] my-5">
                     Get Started for free
@@ -127,6 +131,34 @@ const otherTools = [
               ))}
               
              </div>
+      </div>
+      <div className="mt-20">
+        <WritingPage />
+        <JobsPage />
+        < AcademicPage />
+      </div>
+      <div className="mt-10 w-full">
+        <OrbitingCirclesDemo />
+      </div>
+
+      {/* <div>
+        <ScrollBasedVelocityDemo />
+        
+      </div> */}
+      <div>
+            <h2 className="text-3xl mt-20 items-center justify-center font-bold ">Frequently Asked Questions</h2>
+            
+            <div className="mt-8 gap-3">
+            <FrequentlyAsked/>
+            </div>
+      </div>
+
+      <div>
+           <h2 className="text-5xl font-bold mt-20 my-4">Get started for free</h2>
+               <p  className="font-semibold text-md items-center justify-center mx-8 my-4">Take HypoGo for a spin today. No card required.</p>
+               <Button  className="my-3 mx-20 p-2 justify-center items-center">
+                    try HypoGo free
+               </Button>
       </div>
         
    </div>

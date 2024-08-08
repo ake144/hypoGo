@@ -1,99 +1,77 @@
 'use client';
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import React from 'react';
 
 export default function Home() {
-  const [text, setText] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [input, setInput] = useState('');
-  const [error, setError] = useState<any>(null);
 
-  const handleSubmit = async (e:any) => {
-    e.preventDefault(); // Prevent default form submission
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const res = await fetch("/api/conver", {
-        method: "POST",
-        body: JSON.stringify({ prompt: input }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (!res.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const resultText = await res.text();
-      setText(resultText);
-    } catch (err) {
-      setError(err);
-    } finally {
-      setIsLoading(false);
+  const tools = [
+    {
+      link:'/ai-tools/summarizer',
+      title:'📝 summarizer',
+      description:'Summarize any text with a click of a button. Get the main points of any article or document in seconds.',
+    },
+    {
+      link:'/ai-tools/explain',
+    title:' 🧒🏻 Explain Like I am 10',
+    description:'make complex  topics simple. Explain any topic in simple terms. Great for students and teachers.',
+    },
+    {
+      link:'/ai-tools/re-write',
+    title:'✍🏻 Rewrite Content',
+    description:'Rewrite any text with a click of a button. Get a fresh perspective on any topic.',
+    },
+    {
+      link:'/ai-tools/programming',
+      title:'👩‍💻 Learn Programming',
+      description:'Learn programming with real-time code examples. Get instant feedback on your code.',
+    },
+    {
+      link:'/ai-tools/essay',
+      title:'✍ Essay',
+      description:'Write an essay with a click of a button. Get a fresh perspective on any topic.',
+    },
+    {
+      link:'/ai-tools/research',
+      title:'🔍 Research',
+      description:'Research any topic with a click of a button. Get a fresh perspective on any topic.',
+    },
+    {
+      link:'/ai-tools/interview',
+      title:'🗣 Interview Prep',
+      description:'Prepare for your next interview with real-time feedback. Get instant feedback on your answers.',
+    },
+    {
+      link:'/ai-tools/letter',
+      title:'📚 Cover Letter',
+      description:'Write a cover letter with a click of a button. Get a fresh perspective on any topic.',
     }
-  };
+    
+      ];
+
+
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between pt-20">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <div className="flex flex-col mb-5">
-          <h4 className="text-3xl p-4">AI Tools</h4>
-          <p className="text-xl text-gray-600 ">Simplify complex topics with AI</p>
-        </div>
-        <div className="w-full lg:w-1/2 bg-blue-300 p-2 rounded-lg shadow-lg">
-          {isLoading && <p>Loading...</p>}
-          {error && <p className="text-red-500">Error: {error.message}</p>}
-          
-          {text ? (
-            <>
-              <p className="text-sm font-bold text-gray-800">{text}</p>
-            <form onSubmit={handleSubmit} className="flex flex-col mb-3">
-              <label htmlFor="prompt" className="text-md">Topic</label>
-              <input
-                id="prompt"
-                name="prompt"
-                value={input}
-                placeholder='Type here'
-                onChange={(e) => setInput(e.target.value)}
-                className='text-black w-full p-2 mb-2 border border-gray-400 rounded'
-              />
-              <button
-                type="submit"
-                className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition"
-              >
-                Submit
-              </button>
-            </form>
-            </>
-           
+         
+      <div className="mt-20">
+            <h3  className="mx-[100px] my-5 text-3xl  font-extrabold">Hundreds of powerful tools to transform your work</h3>
 
-          ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col mb-3">
+            <div  className="grid lg:grid-cols-3 grid-cols-2 ">
+                {
+                  tools.map((tool, index)=>(
+                    <Link key={index} href={tool.link} className="bg-gray-400 hover:bg-gray-800 rounded-lg h-[130px]  my-3 mx-3 p-3 justify-center items-center">
+                        <p className="text-xl text-white items-center justify-center my-3"> {tool.title}</p>
+                        <p className="text-sm text-white items-center justify-center my-2 ">{tool.description}</p>
+                   </Link>
 
-                <h2 className="text-2xl">👩🏻 Explain Like I am 10</h2>
-                <h4 className="text-xl text-gray-700 my-2">Simplify complex topics with AI</h4>
-              <label htmlFor="prompt" className="text-md">Topic</label>
-              <input
-                id="prompt"
-                name="prompt"
-                value={input}
-                placeholder='Type here'
-                onChange={(e) => setInput(e.target.value)}
-                className='text-black w-full p-2 mb-2 border border-gray-400 rounded'
-              />
-              <button
-                type="submit"
-                className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition"
-              >
-                Submit
-              </button>
-            </form>
-          )}
-        </div>
+                  ))
+                }
+         </div>
+      </div>
       </div>
     </main>
   );

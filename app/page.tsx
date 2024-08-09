@@ -133,9 +133,9 @@ const otherTools = [
              </div>
       </div>
       <div className="mt-20">
-        <WritingPage />
         <JobsPage />
         < AcademicPage />
+        <WritingPage />
       </div>
       <div className="mt-10 w-full">
         <OrbitingCirclesDemo />

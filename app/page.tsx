@@ -14,44 +14,48 @@ import React from 'react';
 
 export default function Home() {
   const tools = [
-{
-  title:'📝 summarizer',
-  description:'Summarize any text with a click of a button. Get the main points of any article or document in seconds.',
-},
-{
-title:' 🧒🏻 Explain Like I am 10',
-description:'make complex  topics simple. Explain any topic in simple terms. Great for students and teachers.',
-},
-{
-title:'✍🏻 Rewrite Content',
-description:'Rewrite any text with a click of a button. Get a fresh perspective on any topic.',
-},
-{
-  title:'📝 Ai Writer',
-  description:'Write any text with a click of a button. Get a fresh perspective on any topic.',
-},
-{
-  title:'👩‍💻 Learn Programming',
-  description:'Learn programming with real-time code examples. Get instant feedback on your code.',
-},
-{
-  title:'✍ Essay',
-  description:'Write an essay with a click of a button. Get a fresh perspective on any topic.',
-},
-{
-  title:'🔍 Research',
-  description:'Research any topic with a click of a button. Get a fresh perspective on any topic.',
-},
-{
-  title:'🗣 Interview Prep',
-  description:'Prepare for your next interview with real-time feedback. Get instant feedback on your answers.',
-},
-{
-  title:'📚 Cover Letter',
-  description:'Write a cover letter with a click of a button. Get a fresh perspective on any topic.',
-}
-
-  ];
+    {
+      link:'/ai-tools/summarizer',
+      title:'📝 summarizer',
+      description:'Summarize any text with a click of a button. Get the main points of any article or document in seconds.',
+    },
+    {
+      link:'/ai-tools/explain',
+    title:' 🧒🏻 Explain Like I am 10',
+    description:'make complex  topics simple. Explain any topic in simple terms. Great for students and teachers.',
+    },
+    {
+      link:'/ai-tools/re-write',
+    title:'✍🏻 Rewrite Content',
+    description:'Rewrite any text with a click of a button. Get a fresh perspective on any topic.',
+    },
+    {
+      link:'/ai-tools/programming',
+      title:'👩‍💻 Learn Programming',
+      description:'Learn programming with real-time code examples. Get instant feedback on your code.',
+    },
+    {
+      link:'/ai-tools/essay',
+      title:'✍ Essay',
+      description:'Write an essay with a click of a button. Get a fresh perspective on any topic.',
+    },
+    {
+      link:'/ai-tools/research',
+      title:'🔍 Research',
+      description:'Research any topic with a click of a button. Get a fresh perspective on any topic.',
+    },
+    {
+      link:'/ai-tools/interview',
+      title:'🗣 Interview Prep',
+      description:'Prepare for your next interview with real-time feedback. Get instant feedback on your answers.',
+    },
+    {
+      link:'/ai-tools/letter',
+      title:'📚 Cover Letter',
+      description:'Write a cover letter with a click of a button. Get a fresh perspective on any topic.',
+    }
+    
+      ];
 
 const otherTools = [
   {
@@ -94,7 +98,7 @@ const otherTools = [
 
 
   return (
-   <div className="min-h-screen  flex justify-center items-center flex-col">
+    <div className="flex min-h-screen flex-col items-center justify-between pt-20">
       <div className="w-1/2 mt-20">
          <h2 className="text-6xl  justify-center items-center font-bold font-serif ">Write, Research, Learn and Work with HypoGo</h2>
           <p className="text-md font-semibold  items-center justify-center mx-[90px] my-4  ">HypoGo delivers high-quality writing. Instantly tap into a wealth of knowledge with real-time search and citations. simplify complex topics write with the power of AI.</p>
@@ -110,7 +114,7 @@ const otherTools = [
             <div  className="grid lg:grid-cols-3 grid-cols-2 ">
                 {
                   tools.map((tool, index)=>(
-                    <Link key={index} href='' className="bg-gray-400 hover:bg-gray-800 rounded-lg h-[130px]  my-3 mx-3 p-3 justify-center items-center">
+                    <Link key={index} href={tool.link} className="bg-gray-400 hover:bg-gray-800 rounded-lg h-[130px]  my-3 mx-3 p-3 justify-center items-center">
                         <p className="text-xl text-white items-center justify-center my-3"> {tool.title}</p>
                         <p className="text-sm text-white items-center justify-center my-2 ">{tool.description}</p>
                    </Link>
@@ -120,7 +124,7 @@ const otherTools = [
          </div>
       </div>
 
-      <div className="mt-20 ">
+      <div className="mt-20">
             <h3 id='tools' className="mx-[100px] my-5 text-3xl  font-extrabold">other tools</h3>
             <div  className="grid lg:grid-cols-3 grid-cols-2 ">
               {otherTools.map((tool, index)=>(

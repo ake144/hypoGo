@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/ui/headers";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Chatz } from "@/components/chatz";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,11 +26,7 @@ export default function RootLayout({
       <Navbar />
       </div> 
         {children}
-        <Link href="/ai-tools/chat">
-          <Button className="fixed bottom-0 bg-blue-400 w-[100px] font-semibold right-0  mb-9 mr-7 ">
-              Chat
-        </Button>
-        </Link>
+       <Chatz />
         </body>
     </html>
   );

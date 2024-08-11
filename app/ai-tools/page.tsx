@@ -14,6 +14,11 @@ export default function Home() {
       description:'Summarize any text with a click of a button. Get the main points of any article or document in seconds.',
     },
     {
+      link:'/ai-tools/career-path',
+      title:'Career Path Advisor',
+      description:'analyze a user skills, interests, and academic history to suggest potential career paths'
+    },
+    {
       link:'/ai-tools/explain',
     title:' 🧒🏻 Explain Like I am 10',
     description:'make complex  topics simple. Explain any topic in simple terms. Great for students and teachers.',

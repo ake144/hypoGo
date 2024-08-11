@@ -115,12 +115,11 @@ const StudyPlanPage = () => {
       {studyPlan && (
               
           
-        <div  className='mx-4 p-2 rounded-md border my-4  '>
+        <div  className='rounded-md border my-4  mx-9 p-2  pb-2 '>
         
-         <div className='mx-9 p-2  pb-2'>
+
           
                 <pre  className='overflow-x-auto whitespace-pre-wrap '> {studyPlan} </pre> 
-          </div>
         </div>
       )}
     </div>

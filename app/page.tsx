@@ -11,6 +11,8 @@ import Link from "next/link";
 import { title } from "process";
 import { useEffect, useState } from "react";
 import React from 'react';
+import Pricing from "@/components/pricing";
+import Footer from "@/components/footer";
 
 export default function Home() {
   const tools = [
@@ -164,7 +166,13 @@ const otherTools = [
                     try HypoGo free
                </Button>
       </div>
-        
+        <div>
+          <Pricing   />
+        </div>
+
+        <div>
+          <Footer  />
+        </div>
    </div>
      
   );

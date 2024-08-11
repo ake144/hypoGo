@@ -44,18 +44,16 @@ export function Chatz() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline">
-            <Button className="fixed bottom-0 bg-blue-400 w-[100px] font-semibold right-0  mb-9 mr-7 ">
+            <Button variant="outline" className="fixed bottom-0 bg-blue-400 w-[100px] font-semibold right-0  mb-9 mr-7 ">
                 Chat
             </Button>
-        </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-80">
+      <PopoverContent className="w-[400px]">
         <div className="grid gap-4">
-                    <ScrollArea className="h-[460px] mx-4  p-4 w-full rounded-md border">
+                    <ScrollArea className="h-[350px] mx-1  p-1 w-full rounded-md border">
                 {messages.map((message:any) => (
                     
-                    <div key={message.id}  className='mx-5  text-black'>
+                    <div key={message.id}  className='  my-4 border rounded-sm text-black'>
                     
                         {message.role === 'user' ? 'User: ' : 'AI: '}
                         {message.content}
@@ -66,8 +64,8 @@ export function Chatz() {
                     </ScrollArea>
                 <form onSubmit={handleSubmit}>
                     <div className='fixed left-1/2 -translate-x-1/2 bottom-6 w-1/2   text-md'>
-                    <input name="prompt" value={input} placeholder='type here' onChange={handleInputChange}   className='text-black w-1/2 mx-5 p-2 '/>
-                    <button type="submit">Submit</button>
+                    <input name="prompt" value={input} placeholder='type here' onChange={handleInputChange}   className='text-black w-full mx-5 p-2 my-2 '/>
+                    <Button className="mx-14  " type="submit">Submit</Button>
                     </div>
                 </form>
         </div>

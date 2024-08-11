@@ -18,11 +18,12 @@ export async function POST(req: NextRequest) {
           content: messages.map((message:any) => message.content).join('\n'),
         },
       ],
-      model: 'mixtral-8x7b-32768',
+      model: 'llama3-70b-8192',
     });
 
     const responseContent = completion.choices[0]?.message?.content || '';
 console.log(responseContent)
+
     return NextResponse.json({ content: responseContent });
   } catch (error:any) {
     return NextResponse.json({ error: error.message }, { status: 500 });

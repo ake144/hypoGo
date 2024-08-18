@@ -1,4 +1,7 @@
 import OrbitingCircles from "@/components/magicui/orbiting-circles";
+import { Calendar } from "lucide-react";
+import { FcCalendar, FcDocument, FcReading } from "react-icons/fc";
+import { FaCode } from "react-icons/fa";
 
 export function OrbitingCirclesDemo() {
   return (
@@ -14,7 +17,7 @@ export function OrbitingCirclesDemo() {
         delay={20}
         radius={80}
       >
-        <Icons.whatsapp />
+        <Icons.Calendar />
       </OrbitingCircles>
       <OrbitingCircles
         className="size-[30px] border-none bg-transparent"
@@ -24,6 +27,8 @@ export function OrbitingCirclesDemo() {
       >
         <Icons.notion />
       </OrbitingCircles>
+
+     
 
       {/* Outer Circles (reverse) */}
       <OrbitingCircles
@@ -42,6 +47,43 @@ export function OrbitingCirclesDemo() {
         reverse
       >
         <Icons.gitHub />
+      </OrbitingCircles>
+      <OrbitingCircles
+        className="size-[50px] border-none bg-transparent"
+        radius={190}
+        duration={20}
+        delay={20}
+        reverse
+      >
+        <Icons.openai />
+      </OrbitingCircles>
+
+      <OrbitingCircles
+        className="size-[50px] border-none bg-transparent"
+        radius={190}
+        duration={30}
+        delay={20}
+        reverse
+      >
+        <Icons.document />
+      </OrbitingCircles>
+
+      <OrbitingCircles
+        className="size-[50px] border-none bg-transparent"
+        radius={190}
+        duration={15}
+        delay={20}
+        reverse
+      >
+        <Icons.coding />
+      </OrbitingCircles>
+      <OrbitingCircles
+        className="size-[30px] border-none bg-transparent"
+        duration={20}
+        delay={15}
+        radius={80}
+      >
+        <Icons.books />
       </OrbitingCircles>
     </div>
   );
@@ -119,6 +161,19 @@ const Icons = {
       />
     </svg>
   ),
+books:()=>(
+<FcReading  className="w-[100px] h-[100px]" />
+),
+document:()=>(
+  <FcDocument  className='w-[100px] h-[100px]'/>
+),
+Calendar:()=>(
+  <FcCalendar className="w-[100px] h-[100px]"/>
+),
+coding:()=>(
+
+<FaCode  className="w-[100px] h-[100px]" />
+),
   whatsapp: () => (
     <svg
       width="100"

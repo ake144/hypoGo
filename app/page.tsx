@@ -115,8 +115,8 @@ const otherTools = [
             </Button>
          </Link>
       </div>
-      <div className="mt-20">
-            <h3  className="mx-[100px] my-5 text-3xl  font-extrabold">Hundreds of powerful tools to transform your work</h3>
+      <div className="mt-20 md:mx-[100px]  mx-4">
+            <h3  id='tools' className="mx-[100px] my-5 text-3xl  font-extrabold">More than 10 powerful tools to transform your work</h3>
 
             <div  className="grid lg:grid-cols-3 grid-cols-2 ">
                 {
@@ -128,17 +128,23 @@ const otherTools = [
 
                   ))
                 }
+                 
+                 <Link href='/ai-tools'>
+                    <Button  className="flex items-center justify-center md:mx-[190px] mt-6 text-xl" variant={"default"}>
+                      Explore more
+                    </Button>
+                  </Link>
          </div>
       </div>
 
       <div className="mt-20">
-            <h3 id='tools' className="mx-[100px] my-5 text-3xl  font-extrabold">other tools</h3>
+            <h3  className="mx-[100px] my-5 text-3xl  font-extrabold">Other tools</h3>
             <div  className="grid lg:grid-cols-3 grid-cols-2 ">
               {otherTools.map((tool, index)=>(
-            <Link key={index} href='' className="bg-gray-400 hover:bg-gray-800 rounded-lg h-[130px]  my-3 mx-3 p-3 justify-center items-center">
+            <div key={index}  className="bg-gray-400 hover:bg-gray-800  cursor-none rounded-lg h-[130px]  my-3 mx-3 p-3 justify-center items-center">
                         <p className="text-xl text-white items-center justify-center my-3"> {tool.title}</p>
                         <p className="text-sm text-white items-center justify-center my-2 ">{tool.description}</p>
-                   </Link>
+                   </div>
               ))}
               
              </div>

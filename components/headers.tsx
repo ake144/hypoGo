@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import SparklesText from "@/components/magicui/sparkles-text";
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
 
 const Navbar: React.FC = () => {
   return (
@@ -26,6 +27,23 @@ const Navbar: React.FC = () => {
           <Link href='/resources'>
                   <p  className='text-black  hover:bg-gray-300 hover:text-md text-sm"'>Resources</p>
           </Link>
+        </div>
+
+        <div>
+        <div className="ml-[100px]  flex flex-row gap-3">
+         <SignedOut>
+            <SignInButton />
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+      {/* <Link href='/auth/login'>
+        <ShinyButton text="Log In" />
+       </Link>
+       <Link href='/auth/signup'>
+          <Button className="rounded-full  flex justify-end items-end">start for free</Button>
+        </Link> */}
+    </div>
         </div>
       </div>
     </nav>

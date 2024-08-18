@@ -9,23 +9,21 @@ import {
     return (
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="item-1">
-          <AccordionTrigger>Is it accessible?</AccordionTrigger>
+          <AccordionTrigger>Is it free?</AccordionTrigger>
           <AccordionContent>
-            Yes. It adheres to the WAI-ARIA design pattern.
+            Yes. It is free for a limited amount of time.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-2">
-          <AccordionTrigger>Is it styled?</AccordionTrigger>
+          <AccordionTrigger>Is it for everyone?</AccordionTrigger>
           <AccordionContent>
-            Yes. It comes with default styles that matches the other
-            components&apos; aesthetic.
+            Yes. It comes with all rouneded versions including every dimensions.it is mainly for &apos; student.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-3">
-          <AccordionTrigger>Is it animated?</AccordionTrigger>
+          <AccordionTrigger>Is it costs monthly or yearly?</AccordionTrigger>
           <AccordionContent>
-            Yes. It&apos;s animated by default, but you can disable it if you
-            prefer.
+            it costs yearly and hpefully monthly will be included in the comming year, you can access all of the features of it with yearly payment.
           </AccordionContent>
         </AccordionItem>
       </Accordion>

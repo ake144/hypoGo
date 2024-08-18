@@ -21,3 +21,5 @@ model User {
   name  String?
   clerkUserId           String?      @unique
 }
+
+

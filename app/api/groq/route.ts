@@ -8,7 +8,7 @@ export async function POST(req:Request) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${process.env.GROQ_API_KE}Y`, // Replace with your Groq API key
+      'Authorization': `Bearer ${process.env.GROQ_API_KE}`, // Replace with your Groq API key
     },
     body: JSON.stringify({
       model: 'llama3-groq-70b-8192-tool-use-preview', // Choose your model

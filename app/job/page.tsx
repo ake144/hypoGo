@@ -24,8 +24,8 @@ const JobSearch = () => {
     const handleSubmit = async (e:any) => {
         e.preventDefault();
         setLoading(true);
-        const url = "https://jooble.org/api/";
-        const key = "2f7619a6-31c3-4831-a3e1-3452939192b0"; // Your API key
+        const url = process.env.job_url ||  ''; 
+        const key = process.env.job_api_key || '';
         const params = {
             keywords,
             location

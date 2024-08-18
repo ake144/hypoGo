@@ -12,6 +12,8 @@ const JobSearch = () => {
     const [location, setLocation] = useState('USA');
     const [keywords, setKeywords] = useState('it');
 
+    const url = process.env.NEXT_PUBLIC_JOB_URL || '';
+    const key = process.env.NEXT_PUBLIC_JOB_API_KEY || '';
 
     const postedDate = (date:any)=>{
         const currentDate = new Date().getTime();
@@ -24,8 +26,7 @@ const JobSearch = () => {
     const handleSubmit = async (e:any) => {
         e.preventDefault();
         setLoading(true);
-        const url = process.env.job_url ||  ''; 
-        const key = process.env.job_api_key || '';
+       
         const params = {
             keywords,
             location

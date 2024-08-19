@@ -27,54 +27,58 @@ const CareerPathAdvisor = () => {
 
   return (
     <>
-    <div  className='mt-20 mx-3'>
-      <h1 className='flex justify-center items-center text-2xl'>AI-powered Career Path Advisor</h1>
-      <div className='flex flex-col gap-7 mx-11  lg:flex-row'> 
-      <div>
-        <label>
-          Interests:
-          <Input 
-            type="text" 
-            value={interests} 
-            onChange={(e) => setInterests(e.target.value)} 
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          Skills:
-          <Input 
-            type="text" 
-            value={skills} 
-            onChange={(e) => setSkills(e.target.value)} 
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          Academic Background:
-          <Input 
-            type="text" 
-            value={academicBackground} 
-            onChange={(e) => setAcademicBackground(e.target.value)} 
-          />
-        </label>
-      </div>
-
-      
-      <Button className='mt-5 p-4 mx-5 justify-end items-end flex' onClick={handleGenerateCareerPath}>
-        Generate Career Path
-      </Button>
-      </div>
-      <h2 className='my-5 text-2xl justify-center items-center flex'>Suggested Career Path:</h2>
-      {careerAdvice && (
-        <div className='rounded-lg border my-4  mx-9 p-2  pb-2  '>
-          
-          <pre  className='overflow-x-auto whitespace-pre-wrap p-5'> {careerAdvice} </pre> 
+      <div className='mt-10 lg:mt-20 mx-4 lg:mx-16'>
+        <h1 className='text-xl lg:text-2xl font-bold text-center mb-6'>AI-powered Career Path Advisor</h1>
+        <div className='flex flex-col gap-6 lg:gap-8 lg:flex-row'>
+          <div className='flex-1'>
+            <label className='block mb-2 text-sm lg:text-md'>
+              Interests:
+              <Input 
+                type="text" 
+                value={interests} 
+                onChange={(e) => setInterests(e.target.value)} 
+                className='mt-1 block w-full'
+              />
+            </label>
+          </div>
+          <div className='flex-1'>
+            <label className='block mb-2 text-sm lg:text-md'>
+              Skills:
+              <Input 
+                type="text" 
+                value={skills} 
+                onChange={(e) => setSkills(e.target.value)} 
+                className='mt-1 block w-full'
+              />
+            </label>
+          </div>
+          <div className='flex-1'>
+            <label className='block mb-2 text-sm lg:text-md'>
+              Academic Background:
+              <Input 
+                type="text" 
+                value={academicBackground} 
+                onChange={(e) => setAcademicBackground(e.target.value)} 
+                className='mt-1 block w-full'
+              />
+            </label>
+          </div>
         </div>
-      )}
 
-</div>
+        <Button 
+          className='mt-6 p-3 w-full lg:w-auto mx-auto block bg-blue-500 text-white' 
+          onClick={handleGenerateCareerPath}
+        >
+          Generate Career Path
+        </Button>
+
+        <h2 className='my-6 text-xl lg:text-2xl text-center'>Suggested Career Path:</h2>
+        {careerAdvice && (
+          <div className='rounded-lg border my-4 mx-3 lg:mx-16 p-4'>
+            <pre className='whitespace-pre-wrap'>{careerAdvice}</pre>
+          </div>
+        )}
+      </div>
     </>
   );
 };

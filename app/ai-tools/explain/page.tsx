@@ -38,56 +38,53 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between pt-20">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <div className="flex flex-col mb-5">
-          <h4 className="text-3xl p-4">AI Tools</h4>
-          <p className="text-xl text-gray-600 ">Simplify complex topics with AI</p>
+    <main className="flex min-h-screen flex-col items-center justify-center pt-6 px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-3xl lg:max-w-4xl bg-white p-6 rounded-lg shadow-lg">
+        <div className="mb-6">
+          <h4 className="text-2xl md:text-3xl font-bold mb-2">AI Tools</h4>
+          <p className="text-lg text-gray-600">Simplify complex topics with AI</p>
         </div>
-        <div className="w-full lg:w-1/2 bg-blue-300 p-2 rounded-lg shadow-lg">
-          {isLoading && <p>Loading...</p>}
-          {error && <p className="text-red-500">Error: {error.message}</p>}
+        <div className="bg-blue-100 p-4 rounded-lg shadow-md">
+          {isLoading && <p className="text-center text-blue-500">Loading...</p>}
+          {error && <p className="text-center text-red-500">Error: {error.message}</p>}
           
           {text ? (
             <>
-              <p className="text-sm font-bold text-gray-800">{text}</p>
-            <form onSubmit={handleSubmit} className="flex flex-col mb-3">
-              <label htmlFor="prompt" className="text-md">Topic</label>
-              <input
-                id="prompt"
-                name="prompt"
-                value={input}
-                placeholder='Type here'
-                onChange={(e) => setInput(e.target.value)}
-                className='text-black w-full p-2 mb-2 border border-gray-400 rounded'
-              />
-              <button
-                type="submit"
-                className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition"
-              >
-                Submit
-              </button>
-            </form>
+              <p className="text-sm font-bold text-gray-800 mb-4">{text}</p>
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                <label htmlFor="prompt" className="text-md font-semibold">Topic</label>
+                <input
+                  id="prompt"
+                  name="prompt"
+                  value={input}
+                  placeholder='Type here'
+                  onChange={(e) => setInput(e.target.value)}
+                  className='w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500'
+                />
+                <button
+                  type="submit"
+                  className="bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition"
+                >
+                  Submit
+                </button>
+              </form>
             </>
-           
-
           ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col mb-3">
-
-                <h2 className="text-2xl">👩🏻 Explain Like I am 10</h2>
-                <h4 className="text-xl text-gray-700 my-2">Simplify complex topics with AI</h4>
-              <label htmlFor="prompt" className="text-md">Topic</label>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <h2 className="text-xl md:text-2xl font-semibold">👩🏻 Explain Like I am 10</h2>
+              <h4 className="text-lg text-gray-700 mb-4">Simplify complex topics with AI</h4>
+              <label htmlFor="prompt" className="text-md font-semibold">Topic</label>
               <input
                 id="prompt"
                 name="prompt"
                 value={input}
                 placeholder='Type here'
                 onChange={(e) => setInput(e.target.value)}
-                className='text-black w-full p-2 mb-2 border border-gray-400 rounded'
+                className='w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500'
               />
               <button
                 type="submit"
-                className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition"
+                className="bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition"
               >
                 Submit
               </button>

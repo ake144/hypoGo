@@ -7,7 +7,7 @@ import {
   
   export function FrequentlyAsked() {
     return (
-      <Accordion type="single" collapsible className="w-full">
+      <Accordion type="single" collapsible className="w-full p-4 mx-6">
         <AccordionItem value="item-1">
           <AccordionTrigger>Is it free?</AccordionTrigger>
           <AccordionContent>

@@ -1,30 +1,32 @@
-'use client';
+"use client";
 
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 
 const StudyPlanPage = () => {
   const [subjects, setSubjects] = useState<string[]>([]);
   const [studyGoals, setStudyGoals] = useState<string>('');
   const [availableTime, setAvailableTime] = useState<string>('');
   const [deadline, setDeadline] = useState<string>('');
-  const [studyPlan, setStudyPlan] = useState<any>(null);
-  const [newSubject, setNewSubject] = useState<string>(''); // Temporary state for new subject input
+  const [studyPlan, setStudyPlan] = useState<string | null>(null);
+  const [newSubject, setNewSubject] = useState<string>(''); 
 
-  // Add subject to the subjects array
+  // Add a subject to the list
   const addSubject = () => {
     if (newSubject.trim()) {
       setSubjects([...subjects, newSubject.trim()]);
-      setNewSubject(''); // Clear the input field
+      setNewSubject(''); 
     }
   };
 
-  // Remove a subject from the subjects array
+  // Remove a subject from the list
   const removeSubject = (index: number) => {
     setSubjects(subjects.filter((_, i) => i !== index));
   };
 
+  // Handle the form submission and generate the study plan
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -47,60 +49,64 @@ const StudyPlanPage = () => {
       }
 
       const result = await res.json();
-      setStudyPlan(result.schedule); // Assuming the API returns a studyPlan object
+      setStudyPlan(result.schedule);
     } catch (error) {
       console.error('Failed to generate study plan:', error);
     }
   };
 
   return (
-    <div className="mt-10 mx-4 sm:mx-8 lg:mx-16">
-      <h1 className='text-2xl md:text-3xl font-bold text-center mb-6'>AI-Driven Study Plan Generator</h1>
-      <form onSubmit={handleSubmit} className='flex flex-col lg:flex-row gap-8'>
-        <div className='flex flex-col gap-6 flex-1'>
-          <div>
-            <h2 className='text-xl font-semibold mb-2'>Subjects</h2>
-            <Input
-              type="text"
-              placeholder="Add a subject"
-              value={newSubject}
-              onChange={(e) => setNewSubject(e.target.value)}
-            />
-            <Button className='mt-2 bg-gray-100 text-black hover:bg-gray-200' type="button" onClick={addSubject}>
-              Add Subject
-            </Button>
-            <ul className='mt-4'>
+    <div className="flex flex-col items-center mt-10 mx-4 sm:mx-8 lg:mx-16 md:mt-[130px]">
+      <h1 className="text-3xl font-bold text-center mb-8">AI-Driven Study Plan Generator</h1>
+      
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col">
+            <h2 className="text-xl font-semibold mb-2">Subjects</h2>
+            <div className="flex gap-2">
+              <Input
+                type="text"
+                placeholder="Add a subject"
+                value={newSubject}
+                onChange={(e) => setNewSubject(e.target.value)}
+                className="flex-1"
+              />
+              <Button type="button" onClick={addSubject} className="whitespace-nowrap">
+                Add
+              </Button>
+            </div>
+            <ul className="mt-4 space-y-2">
               {subjects.map((subject, index) => (
-                <li className='flex items-center justify-between p-2' key={index}>
-                  {subject} 
-                  <Button variant='destructive' className='ml-2' onClick={() => removeSubject(index)}>
+                <li key={index} className="flex justify-between items-center bg-gray-100 p-2 rounded-md">
+                  <span>{subject}</span>
+                  <Button variant="destructive" onClick={() => removeSubject(index)}>
                     Remove
                   </Button>
                 </li>
               ))}
             </ul>
           </div>
-
-          <Input
-            type="text"
-            placeholder="Study Goals (daily, weekly...)"
+          
+          <Textarea
+            placeholder="Study Goals (e.g., daily focus, key topics...)"
             value={studyGoals}
             onChange={(e) => setStudyGoals(e.target.value)}
             required
+            className="mt-4"
           />
         </div>
 
-        <div className='flex flex-col flex-1 gap-6'>
+        <div className="flex flex-col gap-4">
           <Input
             type="number"
-            placeholder="Available Study Time (hours per day)"
+            placeholder="Available Study Time (hours/day)"
             value={availableTime}
             onChange={(e) => setAvailableTime(e.target.value)}
             required
           />
           <Input
             type="date"
-            placeholder="Deadline"
+            placeholder="Exam Deadline"
             value={deadline}
             onChange={(e) => setDeadline(e.target.value)}
             required
@@ -108,14 +114,14 @@ const StudyPlanPage = () => {
         </div>
       </form>
 
-      <Button className='mt-8 mx-auto block' type="submit" onClick={handleSubmit}>
+      <Button className="mt-8 px-6 py-3 text-lg" type="submit" onClick={handleSubmit}>
         Generate Study Plan
       </Button>
 
-      <h2 className='mt-10 text-2xl font-semibold text-center'>Your Study Plan</h2>
       {studyPlan && (
-        <div className='mt-4 p-4 bg-gray-100 border border-gray-300 rounded-lg mx-4'>
-          <pre className='whitespace-pre-wrap'>{studyPlan}</pre>
+        <div className="mt-10 w-full lg:w-3/4 mx-auto p-6 bg-gray-50 border border-gray-300 rounded-lg">
+          <h2 className="text-2xl font-semibold mb-4">Your Study Plan</h2>
+          <pre className="whitespace-pre-wrap">{studyPlan}</pre>
         </div>
       )}
     </div>

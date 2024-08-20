@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from "react";
+import { use, useState } from "react";
 
 const CoverLetter: React.FC = () => {
   const [coverLetter, setCoverLetter] = useState<string | null>('');
@@ -8,6 +8,7 @@ const CoverLetter: React.FC = () => {
   const [jobArea, setJobArea] = useState('');
   const [role, setRole] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [copied,setCopied] =useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,6 +51,7 @@ const CoverLetter: React.FC = () => {
   const handleCopy = () => {
     if (coverLetter) {
       navigator.clipboard.writeText(coverLetter);
+      setCopied(true);
     }
   };
 
@@ -66,7 +68,7 @@ const CoverLetter: React.FC = () => {
   };
 
   return (
-    <div className="mt-10 px-4 sm:px-6 lg:px-8 mx-auto max-w-3xl">
+    <div className="mt-20 md:mt-[150px] px-4 sm:px-6 lg:px-8 mx-auto max-w-3xl">
       <h1 className="text-2xl md:text-3xl font-bold my-4 text-center">AI-Powered Cover Letter Generator</h1>
       <form onSubmit={handleSubmit} className="w-full bg-white p-6 rounded-lg shadow-md">
         <label htmlFor="jobArea" className="block text-lg font-medium mb-2">Job Area</label>
@@ -117,7 +119,7 @@ const CoverLetter: React.FC = () => {
               onClick={handleCopy}
               className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition"
             >
-              Copy to Clipboard
+              {copied ? 'Copied' : 'Copy to Clipboard' }
             </button>
             <button
               onClick={handleDownload}

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState } from "react";
 
@@ -7,6 +7,16 @@ const InterviewPrep: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [prompt, setPrompt] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [selectedQuestion, setSelectedQuestion] = useState<string | null>(null);
+
+  const commonQuestions = [
+    "Tell me about yourself.",
+    "Why do you want to work here?",
+    "What are your strengths and weaknesses?",
+    "Describe a challenging situation and how you handled it.",
+    "Where do you see yourself in 5 years?",
+    "Why should we hire you?",
+  ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,7 +26,7 @@ const InterviewPrep: React.FC = () => {
     try {
       const res = await fetch('/api/interview', {
         method: "POST",
-        body: JSON.stringify({ prompt }),
+        body: JSON.stringify({ prompt: selectedQuestion || prompt }),
         headers: {
           'Content-Type': 'application/json',
         },
@@ -35,11 +45,34 @@ const InterviewPrep: React.FC = () => {
     }
   };
 
+  const handleQuestionSelect = (question: string) => {
+    setSelectedQuestion(question);
+    setPrompt(question);
+    setResponse(null);
+  };
+
   return (
-    <div className="mt-10 px-4 sm:px-6 lg:px-8 mx-auto max-w-3xl">
+    <div className="md:mt-[160px] mt-20 px-4 sm:px-6 lg:px-8 mx-auto max-w-3xl">
       <h1 className="text-2xl md:text-3xl font-bold my-4 text-center">Prepare for Your Next Interview</h1>
+      
+      <div className="mb-6">
+        <h2 className="text-xl font-semibold mb-2">Common Interview Questions</h2>
+        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {commonQuestions.map((question, index) => (
+            <li key={index}>
+              <button
+                onClick={() => handleQuestionSelect(question)}
+                className={`p-3 w-full text-left border rounded-lg ${selectedQuestion === question ? 'bg-blue-100 border-blue-500' : 'border-gray-300'} hover:bg-blue-50`}
+              >
+                {question}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+
       <form onSubmit={handleSubmit} className="w-full bg-white p-6 rounded-lg shadow-md">
-        <label htmlFor="prompt" className="block text-lg font-medium mb-2">Interview Question or Scenario</label>
+        <label htmlFor="prompt" className="block text-lg font-medium mb-2">Your Custom Question or Scenario</label>
         <textarea
           id="prompt"
           name="prompt"
@@ -60,8 +93,8 @@ const InterviewPrep: React.FC = () => {
 
       {error && <p className="mt-4 text-red-500 text-center">{error}</p>}
       {response && (
-        <div className="mt-4 p-4 bg-gray-100 border border-gray-300 rounded-lg">
-          <h2 className="text-lg font-semibold">Response</h2>
+        <div className="mt-6 p-6 bg-gray-100 border border-gray-300 rounded-lg">
+          <h2 className="text-lg font-semibold">AI-Generated Response</h2>
           <p className="mt-2 whitespace-pre-wrap">{response}</p>
         </div>
       )}

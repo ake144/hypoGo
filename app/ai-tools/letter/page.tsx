@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState } from "react";
 
@@ -11,6 +11,10 @@ const CoverLetter: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!jobArea || !role) {
+      setError('Both fields are required.');
+      return;
+    }
     setIsLoading(true);
     setError(null);
 
@@ -24,15 +28,40 @@ const CoverLetter: React.FC = () => {
       });
 
       if (!res.ok) {
-        throw new Error('Failed to generate cover letter');
+        throw new Error('Failed to generate cover letter. Please try again.');
       }
 
       const result = await res.json();
       setCoverLetter(result.coverLetter);
     } catch (error: any) {
-      setError(error.message || 'An error occurred');
+      setError(error.message || 'An unexpected error occurred. Please try again.');
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleClear = () => {
+    setJobArea('');
+    setRole('');
+    setCoverLetter('');
+    setError(null);
+  };
+
+  const handleCopy = () => {
+    if (coverLetter) {
+      navigator.clipboard.writeText(coverLetter);
+    }
+  };
+
+  const handleDownload = () => {
+    if (coverLetter) {
+      const blob = new Blob([coverLetter], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'cover_letter.txt';
+      a.click();
+      URL.revokeObjectURL(url);
     }
   };
 
@@ -69,6 +98,13 @@ const CoverLetter: React.FC = () => {
         >
           {isLoading ? "Generating..." : "Generate Cover Letter"}
         </button>
+        <button
+          type="button"
+          onClick={handleClear}
+          className="mt-2 bg-gray-300 text-black p-3 rounded-lg hover:bg-gray-400 transition w-full"
+        >
+          Clear
+        </button>
       </form>
 
       {error && <p className="mt-4 text-red-500 text-center">{error}</p>}
@@ -76,6 +112,20 @@ const CoverLetter: React.FC = () => {
         <div className="mt-4 p-4 bg-gray-100 border border-gray-300 rounded-lg">
           <h2 className="text-lg font-semibold">Generated Cover Letter</h2>
           <p className="mt-2 whitespace-pre-wrap">{coverLetter}</p>
+          <div className="flex justify-between mt-4">
+            <button
+              onClick={handleCopy}
+              className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition"
+            >
+              Copy to Clipboard
+            </button>
+            <button
+              onClick={handleDownload}
+              className="bg-green-500 text-white p-2 rounded-lg hover:bg-green-600 transition"
+            >
+              Download as .txt
+            </button>
+          </div>
         </div>
       )}
     </div>

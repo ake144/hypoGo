@@ -93,10 +93,9 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex flex-col items-center bg-gray-50 min-h-screen py-12 ">
-      <div className="mt-20  md:mt-[150px]">
+    <div className="flex flex-col items-center  bg-gray-50 min-h-screen py-12 ">
       {/* Hero Section */}
-      <section className="w-full max-w-6xl px-4 text-center">
+      <section className="w-full max-w-6xl mt-20 md:mt-[140px] px-4 text-center">
         <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
           Empower Your Work with HypoGo
         </h1>
@@ -188,6 +187,5 @@ export default function Home() {
            <Footer />
        </div>
       </div>
-    </div>
   );
 }

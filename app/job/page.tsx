@@ -5,12 +5,14 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { Textarea } from '@/components/ui/textarea';
 import React, { useEffect, useState } from 'react';
+import {Input} from '@/components/ui/input'
 
 const JobSearch = () => {
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(false);
     const [location, setLocation] = useState('USA');
     const [keywords, setKeywords] = useState('it');
+    const [error, setError] = useState<string | null>(null);
 
     const url = process.env.NEXT_PUBLIC_JOB_URL || '';
     const key = process.env.NEXT_PUBLIC_JOB_API_KEY || '';
@@ -26,6 +28,7 @@ const JobSearch = () => {
     const handleSubmit = async (e:any) => {
         e.preventDefault();
         setLoading(true);
+         setError(null)
        
         const params = {
             keywords,
@@ -51,6 +54,7 @@ const JobSearch = () => {
             setJobs(data.jobs); 
         } catch (error) {
             console.error('Error fetching jobs:', error);
+            setError('Error fetching jobs. Please try again later.');
         } finally {
             setLoading(false);
         }
@@ -58,39 +62,46 @@ const JobSearch = () => {
 
     return (
         <div className="container mx-auto mt-10 p-6">
-            <div className="bg-white shadow-md rounded-lg p-6">
-                <h1 className="text-3xl font-bold mb-4">Job Search</h1>
-                <p className="text-gray-600 mb-6">Search for jobs using keywords in your preferred location</p>
-                <form onSubmit={handleSubmit}>
-                    <div className="grid grid-cols-1 sm:flex sm:flex-col md:grid-cols-3 gap-4">
-                        <div className="flex flex-col">
-                            <label htmlFor="keywords" className="block text-sm font-medium text-gray-700">Keywords</label>
-                            <Textarea
-                                id="keywords"
-                                value={keywords}
-                                onChange={(e) => setKeywords(e.target.value)}
-                                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                            />
-                        </div>
-
-                        <div className="flex flex-col">
-                            <label htmlFor="location" className="block text-sm font-medium text-gray-700">Location</label>
-                            <Textarea
-                                id="location"
-                                value={location}
-                                onChange={(e) => setLocation(e.target.value)}
-                                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                            />
-                        </div>
-
-                        <div className="flex flex-col justify-end w-full sm:w-auto">
-                            <Button type="submit" className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Search
-                            </Button>
-                        </div>
-                    </div>
-                </form>
+           <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6 mt-20  md:mt-[150px]">
+        <h1 className="text-3xl font-bold mb-4">Job Search</h1>
+        <p className="text-gray-600 mb-6">
+          Find jobs using keywords and location.
+        </p>
+        <form onSubmit={handleSubmit}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="flex flex-col">
+              <label htmlFor="keywords" className="text-sm font-medium text-gray-700">
+                Keywords
+              </label>
+              <Input
+                id="keywords"
+                value={keywords}
+                onChange={(e:any) => setKeywords(e.target.value)}
+                className="mt-1"
+              />
             </div>
+
+            <div className="flex flex-col">
+              <label htmlFor="location" className="text-sm font-medium text-gray-700">
+                Location
+              </label>
+              <Input
+                id="location"
+                value={location}
+                onChange={(e:any) => setLocation(e.target.value)}
+                className="mt-1"
+              />
+            </div>
+
+            <div className="flex items-end">
+              <Button type="submit" className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md shadow hover:bg-indigo-700">
+                Search
+              </Button>
+            </div>
+          </div>
+        </form>
+      </div>
+
 
             <div className="mt-10">
                 <h2 className="text-2xl font-bold mb-4 mx-10">Job Search Results</h2>
